@@ -44,12 +44,16 @@ jobs:
         run: yarn build-image
         env:
           DOCKER_BUILDKIT: 1
-          
-#      - name: Build and push
-#        uses: docker/build-push-action@v4
-#        with:
-#          context: "{{defaultContext}}"
-#          file: packages/backend/Dockerfile
-#          push: false
-#          tags: user/backstage:latest
-#          no-cache: true
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+        with:
+          registry: ${{ secrets.HARBOR_HOST }}
+          username: ${{ secrets.HARBOR_USER }}
+          password: ${{ secrets.HARBOR_PASS }}
+
+      - name: Push to registry
+        run:
+#          docker login -u ${{ secrets.HARBOR_USER }} -p ${{ secrets.HARBOR_PASS }} ${{ secrets.HARBOR_HOST }}
+          docker tag backstage:lates ${{ secrets.HARBOR_HOST }}/library/backstage:latest
+          docker push backstage:latest
