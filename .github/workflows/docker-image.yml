@@ -55,4 +55,4 @@ jobs:
       - name: Push to registry
         run: |
           docker tag backstage ${{ secrets.HARBOR_HOST }}/library/backstage:latest
-          docker push backstage:latest
+          docker push ${{ secrets.HARBOR_HOST }}/library/backstage:latest
