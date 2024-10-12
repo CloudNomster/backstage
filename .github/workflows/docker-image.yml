@@ -31,25 +31,23 @@ jobs:
       - run: npm install --global yarn
 
       - name: yarn install
-        run: yarn install
+        run: yarn install --immutable
         shell: bash
 
       - name: Build typedefs
         run: yarn tsc
-        shell: bash
 
       - name: Build backend
         run: yarn build:backend --config ../../app-config.yaml --config ../../app-config.production.yaml
-        shell: bash
 
-      - name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          context: "{{defaultContext}}"
-          file: packages/backend/Dockerfile
-          push: false
-          tags: user/backstage:latest
-          no-cache: true
-
-#      - name: Build image
-#        run: yarn build-image
+      - name: Build image
+        run: yarn build-image
+        
+#      - name: Build and push
+#        uses: docker/build-push-action@v4
+#        with:
+#          context: "{{defaultContext}}"
+#          file: packages/backend/Dockerfile
+#          push: false
+#          tags: user/backstage:latest
+#          no-cache: true
