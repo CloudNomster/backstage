@@ -8,10 +8,9 @@ on:
 #    branches: [ "main" ]
 
 jobs:
-
   build-and-push:
     runs-on: nomsterbuilder
-#    container: node:20-bookworm
+    # container: node:20-bookworm
 
     steps:
       - name: Checkout
@@ -51,7 +50,7 @@ jobs:
           registry: ${{ secrets.HARBOR_HOST }}
           username: ${{ secrets.HARBOR_USER }}
           password: ${{ secrets.HARBOR_TOKEN }}
-          
+
       - name: Push to registry
         run: |
           docker tag backstage ${{ secrets.HARBOR_HOST }}/library/backstage:latest
