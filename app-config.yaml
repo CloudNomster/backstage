@@ -96,7 +96,18 @@ catalog:
             and startsWith(displayName, 'backstage-')
         schedule:
           frequency: PT1H
-          timeout: PT50M      
+          timeout: PT50M
+    github:
+      providerId:
+        organization: ${GITHUB_ORG}
+        catalogPath: '/catalog-info.yaml'
+        validateLocationsExist: True
+        filters:
+          branch: 'main'
+          repository: '.*'
+        schedule:
+          frequency: { minutes: 30 }
+          timeout: { minutes: 5 }
 
 kubernetes:
   # see https://backstage.io/docs/features/kubernetes/configuration for kubernetes configuration options
