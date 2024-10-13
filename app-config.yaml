@@ -76,9 +76,9 @@ scaffolder:
   # see https://backstage.io/docs/features/software-templates/configuration for software template options
 
 catalog:
+  locations: []
   import:
     entityFilename: catalog-info.yaml
-    pullRequestBranchName: backstage-integration
   rules:
     - allow: [Component, System, API, Resource, Location]
   providers:
@@ -87,6 +87,16 @@ catalog:
         tenantId: ${AZURE_TENANT_ID}
         clientId: ${AZURE_CLIENT_ID}
         clientSecret: ${AZURE_CLIENT_SECRET}
+        user:
+          filter: accountEnabled eq true and userType eq 'member'
+        group:
+          filter: >
+            securityEnabled eq true
+            and mailEnabled eq true
+            and startsWith(displayName, 'backstage-')
+        schedule:
+          frequency: PT1H
+          timeout: PT50M      
 
 kubernetes:
   # see https://backstage.io/docs/features/kubernetes/configuration for kubernetes configuration options
