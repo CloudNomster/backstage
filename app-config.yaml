@@ -92,7 +92,7 @@ catalog:
         group:
           filter: >
             securityEnabled eq true
-            and startsWith(displayName, 'backstage-')
+            and displayName eq 'team-nomster'
         schedule:
           frequency: PT1H
           timeout: PT50M
