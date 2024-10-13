@@ -92,7 +92,6 @@ catalog:
         group:
           filter: >
             securityEnabled eq true
-            and mailEnabled eq true
             and startsWith(displayName, 'backstage-')
         schedule:
           frequency: PT1H
