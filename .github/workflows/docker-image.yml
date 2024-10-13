@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Backstage build and push
 
 on:
   workflow_dispatch:
