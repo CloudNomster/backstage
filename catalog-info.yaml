@@ -5,7 +5,6 @@ metadata:
   description: Backstage for CloudNomster
   annotations:
     github.com/project-slug: CloudNomster/backstage
-    argocd/app-name: backstage
   #   backstage.io/techdocs-ref: dir:.
 spec:
   type: code
