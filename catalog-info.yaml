@@ -8,6 +8,6 @@ metadata:
     argocd/app-name: backstage
   #   backstage.io/techdocs-ref: dir:.
 spec:
-  type: website
+  type: code
   owner: group:team-nomster
   lifecycle: production
