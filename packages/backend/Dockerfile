@@ -62,4 +62,5 @@ RUN --mount=type=cache,target=/home/node/.cache/yarn,sharing=locked,uid=1000,gid
 
 
 
-CMD ["node", "packages/backend", "--config", "app-config.yaml"]
+#CMD ["node", "packages/backend", "--config", "app-config.yaml"]
+CMD ["node", "packages/backend"]
