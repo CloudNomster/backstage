@@ -110,6 +110,26 @@ catalog:
 
 kubernetes:
   # see https://backstage.io/docs/features/kubernetes/configuration for kubernetes configuration options
+  serviceLocatorMethod:
+    type: 'multiTenant'
+  clusterLocatorMethods:
+    - type: 'config'
+      clusters:
+        - url: https://192.168.79.10:6443
+          name: NomsterCluster
+          authProvider: 'serviceAccount'
+          skipTLSVerify: false
+          skipMetricsLookup: true
+          # serviceAccountToken: ${K8S_MINIKUBE_TOKEN}
+          # dashboardUrl: http://127.0.0.1:64713 # url copied from running the command: minikube service kubernetes-dashboard -n kubernetes-dashboard
+          # dashboardApp: standard
+          caData: ${K8S_CONFIG_CA_DATA}
+          # caFile: '' # local path to CA file
+          # customResources:
+          #   - group: 'argoproj.io'
+          #     apiVersion: 'v1alpha1'
+          #     plural: 'rollouts'
+
 
 # see https://backstage.io/docs/permissions/getting-started for more on the permission framework
 permission:
