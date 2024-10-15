@@ -39,8 +39,8 @@ integrations:
 
 proxy:
   endpoints:
-    /argocd/api:
-      target: ${ARGOCD_URL}
+    "/argocd/api":
+      target: "${ARGOCD_URL}"
       changeOrigin: true
       headers:
         Cookie: "argocd.token=${ARGOCD_AUTH_TOKEN}"
@@ -108,6 +108,9 @@ catalog:
         schedule:
           frequency: { minutes: 30 }
           timeout: { minutes: 5 }
+    kubernetes:
+      nomstercluster:
+        cluster: nomstercluster
 
 kubernetes:
   # see https://backstage.io/docs/features/kubernetes/configuration for kubernetes configuration options
@@ -117,7 +120,7 @@ kubernetes:
     - type: 'config'
       clusters:
         - url: https://192.168.79.10:6443
-          name: NomsterCluster
+          name: nomstercluster
           authProvider: 'serviceAccount'
           skipTLSVerify: true
           skipMetricsLookup: true
@@ -130,6 +133,10 @@ kubernetes:
           #   - group: 'argoproj.io'
           #     apiVersion: 'v1alpha1'
           #     plural: 'rollouts'
+          customResources: 
+            - group: gateway.networking.k8s.io
+              apiVersion: v1
+              plural: httproutes
 
 
 # see https://backstage.io/docs/permissions/getting-started for more on the permission framework
