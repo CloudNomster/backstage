@@ -56,7 +56,7 @@ import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
 
 import {
   EntityKubernetesContent,
-  isKubernetesAvailable,
+  // isKubernetesAvailable,
 } from '@backstage/plugin-kubernetes';
 
 import {
