@@ -19,7 +19,7 @@ jobs:
           webhook_id: ${{ secrets.DISCORD_ID }}
           webhook_token: ${{ secrets.DISCORD_TOKEN }}
           color: "yellow"
-          message: "${{ github.repository }} build starting: ${{ github.job }}"
+          message: "${{ github.repository }} build starting: ${{ github.event.head_commit.message }}"
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -71,5 +71,5 @@ jobs:
           webhook_id: ${{ secrets.DISCORD_ID }}
           webhook_token: ${{ secrets.DISCORD_TOKEN }}
           color: "{{#success build.status}}green{{else}}red{{/success}}"
-          message: "{{#success build.status}}✅{{else}}❌{{/success}} ${{ github.repository }} build succeeded: ${{ github.job }}"
+          message: "{{#success build.status}}✅{{else}}❌{{/success}} ${{ github.repository }} build succeeded: ${{ github.event.head_commit.message }}"
   
