@@ -13,6 +13,14 @@ jobs:
     # container: node:20-bookworm
 
     steps:
+      - name: send STARTING to Discord
+        uses: appleboy/discord-action@master
+        with:
+          webhook_id: ${{ secrets.DISCORD_ID }}
+          webhook_token: ${{ secrets.DISCORD_TOKEN }}
+          color: "yellow"
+          message: "${{ github.repository }} build starting: ${{ github.event_name }}"
+
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -56,3 +64,12 @@ jobs:
         run: |
           docker tag backstage ${{ secrets.HARBOR_HOST }}/library/backstage:latest
           docker push ${{ secrets.HARBOR_HOST }}/library/backstage:latest
+
+      - name: send COMPLETED to Discord
+        uses: appleboy/discord-action@master
+        with:
+          webhook_id: ${{ secrets.DISCORD_ID }}
+          webhook_token: ${{ secrets.DISCORD_TOKEN }}
+          color: "{{#success build.status}}green{{else}}red{{/success}}"
+          message: "{{#success build.status}}✅{{else}}❌{{/success}} ${{ github.repository }} build succeeded: ${{ github.event_name }}"
+  
