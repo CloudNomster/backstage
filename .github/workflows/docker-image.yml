@@ -19,7 +19,10 @@ jobs:
           webhook_id: ${{ secrets.DISCORD_ID }}
           webhook_token: ${{ secrets.DISCORD_TOKEN }}
           color: "yellow"
-          message: "${{ github.repository }} build starting: ${{ github.event.head_commit.message }}"
+          message: |
+            ${{ github.repository }}
+            
+            Build starting: ${{ github.event.head_commit.message }}
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -45,7 +48,6 @@ jobs:
         run: yarn tsc
 
       - name: Build backend
-        # run: yarn build:backend --config ../../app-config.yaml --config ../../app-config.production.yaml
         run: yarn build:backend
 
       - name: Build image
@@ -71,5 +73,8 @@ jobs:
           webhook_id: ${{ secrets.DISCORD_ID }}
           webhook_token: ${{ secrets.DISCORD_TOKEN }}
           color: "{{#success build.status}}green{{else}}red{{/success}}"
-          message: "{{#success build.status}}✅{{else}}❌{{/success}} ${{ github.repository }} build succeeded: ${{ github.event.head_commit.message }}"
+          message: |
+            ${{ github.repository }}
+
+            {{#success build.status}}✅{{else}}❌{{/success}} Build succeeded: ${{ github.event.head_commit.message }}
   
