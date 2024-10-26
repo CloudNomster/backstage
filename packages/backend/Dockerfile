@@ -18,7 +18,7 @@ ENV PYTHON=/usr/bin/python3
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
     apt-get update && \
-    apt-get install -y --no-install-recommends python3 g++ build-essential && \
+    apt-get install -y --no-install-recommends python3 g++ build-essential python3-pip python3-venv && \
     rm -rf /var/lib/apt/lists/*
 
 # Install sqlite3 dependencies. You can skip this if you don't use sqlite3 in the image,
@@ -60,7 +60,14 @@ RUN tar xzf bundle.tar.gz && rm bundle.tar.gz
 RUN --mount=type=cache,target=/home/node/.cache/yarn,sharing=locked,uid=1000,gid=1000 \
     yarn workspaces focus --all --production && rm -rf "$(yarn cache clean)"
 
+ENV VIRTUAL_ENV=/opt/venv
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
+RUN pip3 install mkdocs-techdocs-core
 
 #CMD ["node", "packages/backend", "--config", "app-config.yaml"]
 CMD ["node", "packages/backend"]
+
+
+
