@@ -18,6 +18,7 @@ backend.add(import('@backstage/plugin-techdocs-backend/alpha'));
 // auth plugin
 backend.add(import('@backstage/plugin-auth-backend'));
 backend.add(import('@backstage/plugin-auth-backend-module-microsoft-provider'));
+backend.add(import('@backstage/plugin-auth-backend-module-github-provider'));
 
 // catalog plugin
 backend.add(import('@backstage/plugin-catalog-backend/alpha'));
