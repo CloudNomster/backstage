@@ -7,6 +7,6 @@ metadata:
     github.com/project-slug: CloudNomster/backstage
   #   backstage.io/techdocs-ref: dir:.
 spec:
-  type: code
+  type: service
   owner: group:team-nomster
   lifecycle: production
