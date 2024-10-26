@@ -69,6 +69,7 @@ jobs:
 
       - name: send COMPLETED to Discord
         uses: appleboy/discord-action@master
+        if: ${{ always() }}
         with:
           webhook_id: ${{ secrets.DISCORD_ID }}
           webhook_token: ${{ secrets.DISCORD_TOKEN }}
@@ -76,5 +77,5 @@ jobs:
           message: |
             ${{ github.repository }}
 
-            {{#success build.status}}✅{{else}}❌{{/success}} Build succeeded: ${{ github.event.head_commit.message }}
+            {{#success build.status}}✅ Build succeeded: {{else}}❌ Build failed:{{/success}} ${{ github.event.head_commit.message }}
   
