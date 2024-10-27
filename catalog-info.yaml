@@ -5,6 +5,7 @@ metadata:
   description: Backstage for CloudNomster
   annotations:
     github.com/project-slug: CloudNomster/backstage
+    goharbor.io/repository-slug: library/backstage
   #   backstage.io/techdocs-ref: dir:.
 spec:
   type: service
