@@ -69,11 +69,6 @@ import {
   isGithubActionsAvailable,
 } from '@backstage-community/plugin-github-actions';
 
-import {
-  HarborPage,
-  HarborWidget,
-  isHarborAvailable,
-} from '@digitalist-open-cloud/backstage-plugin-harbor'
 
 const techdocsContent = (
   <EntityTechdocsContent>
@@ -156,14 +151,6 @@ const overviewContent = (
       </EntitySwitch.Case>
     </EntitySwitch>
 
-    <EntitySwitch>
-      <EntitySwitch.Case if={isHarborAvailable}>
-        <Grid item>
-          <HarborWidget />
-        </Grid>
-      </EntitySwitch.Case>
-    </EntitySwitch>
-
     <Grid item md={4} xs={12}>
       <EntityLinksCard />
     </Grid>
@@ -183,10 +170,6 @@ const serviceEntityPage = (
 
     <EntityLayout.Route path="/ci-cd" title="CI/CD">
       {cicdContent}
-    </EntityLayout.Route>
-
-    <EntityLayout.Route path="/harbor" title="Harbor" if={isHarborAvailable}>
-      <HarborPage />
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/kubernetes" title="Kubernetes">
