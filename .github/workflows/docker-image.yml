@@ -9,8 +9,8 @@ on:
 
 jobs:
   build-and-push:
-    runs-on: nomsterbuilder
-    # container: node:20-bookworm
+    #runs-on: nomsterbuilder
+    runs-on: nomsterrunner
 
     steps:
       - name: send STARTING to Discord
