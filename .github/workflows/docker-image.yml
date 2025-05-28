@@ -78,5 +78,5 @@ jobs:
           message: |
             ${{ github.repository }}
 
-            {{#success build.status}}✅ Build succeeded: {{else}}❌ Build failed:{{/success}} ${{ github.event.head_commit.message }}
+            {{#success success() }}✅ Build succeeded: {{else}}❌ Build failed:{{/success}} ${{ github.event.head_commit.message }}
   
